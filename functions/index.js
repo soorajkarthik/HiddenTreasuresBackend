@@ -11,17 +11,17 @@ exports.resetTreasures = functions.https.onRequest((request, response) => {
 
   databaseReference = admin.database().ref('Treasures');
 
-  treasrues = [];
+  treasures = [];
 
   for (var i = 0; i < 10000; i++) {
-    treasrues[i] = {
-      latitute: getRandomNumberBetween(minLatitude, maxLatitude),
+    treasures[i] = {
+      latitude: getRandomNumberBetween(minLatitude, maxLatitude),
       longitude: getRandomNumberBetween(minLongitude, maxLongitude),
       rarity: getRarity()
     };
   }
 
-  databaseReference.set(treasrues);
+  databaseReference.set(treasures);
   console.log('hi i am a function and I am working :)');
   return null;
 });
