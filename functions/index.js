@@ -35,19 +35,19 @@ function getRarity() {
   switch(true) {
 
     case(rand < 0.001):
-      return 'legendary';
+      return 'LEGENDARY';
 
     case(rand < 0.006):
-      return 'ultra-rare';
+      return 'ULTRA_RARE';
 
     case(rand < 0.015):
-      return 'rare';
+      return 'RARE';
 
     case(rand < 0.305):
-      return 'uncommon';
+      return 'UNCOMMON';
 
     default:
-      return 'common';
+      return 'COMMON';
   }
 }
 //(33.246028, -96.975756)
