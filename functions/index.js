@@ -2,14 +2,15 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin')
 admin.initializeApp();
 
-exports.resetTreasures = functions.https.onRequest((request, response) => {
+exports.dailyReset = functions.https.onRequest((request, response) => {
 
   minLatitude = 32.959580;
   maxLatitude = 33.246028;
   minLongitude = -96.975756;
   maxLongitude = -96.532377;
 
-  databaseReference = admin.database().ref('Treasures');
+  treasuresReference = admin.database().ref('Treasures');
+  usersReference = admin.database().ref('Users')
 
   treasures = [];
 
@@ -17,11 +18,19 @@ exports.resetTreasures = functions.https.onRequest((request, response) => {
     treasures[i] = {
       latitude: getRandomNumberBetween(minLatitude, maxLatitude),
       longitude: getRandomNumberBetween(minLongitude, maxLongitude),
-      rarity: getRarity()
+      rarity: getRarity(),
+      id: i
     };
   }
 
-  databaseReference.set(treasures);
+  treasuresReference.set(treasures);
+  usersReference.on('value', dataSnapshot => {
+    dataSnapshot.forEach(userSnapshot => {
+      var username = userSnapshot.child('username').val()
+      usersReference.child(`${username.toString()}/treasuresFoundTodayIDs`).set([])
+    })
+  })
+
   console.log('hi i am a function and I am working :)');
   return null;
 });
