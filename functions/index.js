@@ -1,18 +1,43 @@
-const functions = require('firebase-functions');
+const functions = require('firebase-functions')
 const admin = require('firebase-admin')
-admin.initializeApp();
+admin.initializeApp()
+
+exports.sendFriendRequestNotification = functions.database.ref('Users/{recipient}/friendRequests/{friendRequestId}')
+    .onCreate((snapshot, context) => {
+
+        const recipient = context.params.recipient
+        const sender = snapshot.child('username').val()
+
+        const recipientInstanceTokenPromise = admin.database().ref(`Users/${recipient}/instanceToken`).once('value')
+
+        return recipientInstanceTokenPromise.then(result => {
+            const instanceToken = result.val();
+
+            const payload =
+            {
+                notification: {
+                    title: 'Hidden Treasures',
+                    body: `You have received a friend request from ${sender}`,
+                }
+            }
+
+            return admin.messaging().sendToDevice(instanceToken, payload)
+
+        })
+
+    })
 
 exports.dailyReset = functions.https.onRequest((request, response) => {
 
-  minLatitude = 32.959580;
-  maxLatitude = 33.246028;
-  minLongitude = -96.975756;
-  maxLongitude = -96.532377;
+  minLatitude = 32.959580
+  maxLatitude = 33.246028
+  minLongitude = -96.975756
+  maxLongitude = -96.532377
 
-  treasuresReference = admin.database().ref('Treasures');
+  treasuresReference = admin.database().ref('Treasures')
   usersReference = admin.database().ref('Users')
 
-  treasures = [];
+  treasures = []
 
   for (var i = 0; i < 10000; i++) {
     treasures[i] = {
@@ -20,10 +45,10 @@ exports.dailyReset = functions.https.onRequest((request, response) => {
       longitude: getRandomNumberBetween(minLongitude, maxLongitude),
       rarity: getRarity(),
       id: i
-    };
+    }
   }
 
-  treasuresReference.set(treasures);
+  treasuresReference.set(treasures)
   usersReference.on('value', dataSnapshot => {
     dataSnapshot.forEach(userSnapshot => {
       var username = userSnapshot.child('username').val()
@@ -31,32 +56,31 @@ exports.dailyReset = functions.https.onRequest((request, response) => {
     })
   })
 
-  console.log('hi i am a function and I am working :)');
-  return null;
+  return null
 });
 
 function getRandomNumberBetween(min, max) {
-  return Math.random() * (max - min + 1) + min;
+  return Math.random() * (max - min + 1) + min
 }
 
 function getRarity() {
-  rand = Math.random();
+  rand = Math.random()
   switch(true) {
 
     case(rand < 0.001):
-      return 'LEGENDARY';
+      return 'LEGENDARY'
 
     case(rand < 0.006):
-      return 'ULTRA_RARE';
+      return 'ULTRA_RARE'
 
     case(rand < 0.015):
-      return 'RARE';
+      return 'RARE'
 
     case(rand < 0.305):
-      return 'UNCOMMON';
+      return 'UNCOMMON'
 
     default:
-      return 'COMMON';
+      return 'COMMON'
   }
 }
 //(33.246028, -96.975756)
