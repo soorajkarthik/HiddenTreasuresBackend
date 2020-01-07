@@ -43,7 +43,6 @@ exports.sendFriendRequestNotification = functions.database.ref('Users/{recipient
  * @param  {EventContext} context Object containing information about the time and authorization of the function call
  * @return {Promise}              Null promise that indicates that no action is needed after function is executed
  */
-
 exports.dailyReset = functions.pubsub.schedule('@daily')
   .timeZone('America/New_York')
   .onRun(context => {
@@ -77,27 +76,40 @@ exports.dailyReset = functions.pubsub.schedule('@daily')
     return null
   });
 
+/**
+ * @param  {Number} min Inclusive lower bound of random number
+ * @param  {Number} max Inclusive upper bound of random number
+ * @return {Number}     Random number between min and max
+ */
 function getRandomNumberBetween(min, max) {
   return Math.random() * (max - min + 1) + min
 }
 
+/**
+ * @return {String} Randomly generated rarity based on predefined probabilities
+ */
 function getRarity() {
 
   rand = Math.random()
   switch(true) {
 
-    case(rand < 0.001):
+    //1%
+    case(rand <= 0.01):
       return 'LEGENDARY'
 
-    case(rand < 0.006):
+    //4%
+    case(rand <= 0.05):
       return 'ULTRA_RARE'
 
-    case(rand < 0.015):
+    //10%
+    case(rand <= 0.15):
       return 'RARE'
 
-    case(rand < 0.305):
+    //30%
+    case(rand <= 0.45):
       return 'UNCOMMON'
 
+    //55%
     default:
       return 'COMMON'
 }
