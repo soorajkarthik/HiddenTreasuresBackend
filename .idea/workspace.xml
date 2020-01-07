@@ -29,7 +29,7 @@
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="ServiceViewManager">
@@ -83,7 +83,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577742316549</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add notification functionality&#10;reformatted code">
+      <created>1578176000423</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1578176000423</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -91,10 +98,25 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="finished random point generation" />
     <MESSAGE value="added reset to &quot;treasuresFoundTodayIds&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="added reset to &quot;treasuresFoundTodayIds&quot;" />
+    <MESSAGE value="add notification functionality&#10;reformatted code" />
+    <option name="LAST_COMMIT_MESSAGE" value="add notification functionality&#10;reformatted code" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="547" y="26" key="CommitChangelistDialog2" timestamp="1578175999721">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="547" y="26" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578175999721" />
+    <state x="461" y="163" key="SettingsEditor" timestamp="1578326737895">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1578326737895" />
+    <state x="552" y="249" key="Vcs.Push.Dialog.v2" timestamp="1578176003083">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="249" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578176003083" />
   </component>
   <component name="masterDetails">
     <states>
