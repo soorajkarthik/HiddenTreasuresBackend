@@ -8,7 +8,7 @@ admin.initializeApp()
  *
  * @param  {DataSnapshot} snapshot A snapshot of the portion of the database that data was created in
  * @param  {EventContext} context  An object containing information about the path that data was created in
- * @return {Promise}               Promise that will send notification once created data has been downloaded
+ * @return {Promise} Promise that will send notification once created data has been downloaded
  */
 exports.sendFriendRequestNotification = functions.database.ref('Users/{recipient}/friendRequests/{friendRequestId}')
     .onCreate((snapshot, context) => {
@@ -41,7 +41,7 @@ exports.sendFriendRequestNotification = functions.database.ref('Users/{recipient
  * Resets the variable that keeps track of treasures the user has found on a particular day
  *
  * @param  {EventContext} context Object containing information about the time and authorization of the function call
- * @return {Promise}              Null promise that indicates that no action is needed after function is executed
+ * @return {Promise} Null promise that indicates that no action is needed after function is executed
  */
 exports.dailyReset = functions.pubsub.schedule('@daily')
   .timeZone('America/New_York')
@@ -79,7 +79,7 @@ exports.dailyReset = functions.pubsub.schedule('@daily')
 /**
  * @param  {Number} min Inclusive lower bound of random number
  * @param  {Number} max Inclusive upper bound of random number
- * @return {Number}     Random number between min and max
+ * @return {Number} Random number between min and max
  */
 function getRandomNumberBetween(min, max) {
   return Math.random() * (max - min + 1) + min
